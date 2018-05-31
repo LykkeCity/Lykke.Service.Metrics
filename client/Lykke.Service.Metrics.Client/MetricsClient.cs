@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Http;
 using Common.Log;
 using Lykke.Service.Metrics.AutorestClient;
 
@@ -13,7 +14,7 @@ namespace Lykke.Service.Metrics.Client
 
         public MetricsClient(string serviceUrl)
         {
-            _service = new MetricsAPI(new Uri(serviceUrl));
+            _service = new MetricsAPI(new Uri(serviceUrl), new HttpClient());
 
             KeyValue = new KeyValueMetricsClient(_service);
             KeyValueLogs = new KeyValueMetricLogsClient(_service);
